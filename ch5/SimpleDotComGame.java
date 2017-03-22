@@ -6,8 +6,6 @@ public class SimpleDotComGame {
         int numGuesses = 0;
         SimpleDotCom ubermelon = new SimpleDotCom();
 
-        ArrayList<String> hitsMade = new ArrayList<String>();
-
         // Apparently this is a helper class we'll write...
         GameHelper helper = new GameHelper();
 
@@ -15,7 +13,10 @@ public class SimpleDotComGame {
         // dot com's location cells.
 
         int start = (int) (Math.random() * 5);
-        int [] cells = {start, start + 1, start + 2};
+        ArrayList<Integer> cells = new ArrayList<Integer>();
+        cells.add(start);
+        cells.add(start + 1);
+        cells.add(start + 2);
         ubermelon.setLocationCells(cells);
 
         // State variable; when this is false, the dot com is dead, Jim.
@@ -26,31 +27,16 @@ public class SimpleDotComGame {
 
         while (isAlive == true) {
             String userGuess = helper.getUserInput("Enter a number: ");
-            boolean alreadyHit = false;
 
-            for (String hit : hitsMade) {
-                if (userGuess.equals(hit)) {
-                    alreadyHit = true;
-                    break;
-                }
+            String result = ubermelon.checkYoSelf(userGuess);
+
+            numGuesses++;
+
+            if (result == "kill") {
+                isAlive = false;
+                System.out.println("You took " + numGuesses + " guesses");
             }
 
-            if (alreadyHit == false) {
-
-                String result = ubermelon.checkYoSelf(userGuess);
-
-                numGuesses++;
-                hitsMade.add(userGuess);
-
-                if (result == "kill") {
-                    isAlive = false;
-                    System.out.println("You took " + numGuesses + " guesses");
-                }
-            }
-
-            else {
-                System.out.println("Hey, you blew that up already!");
-            }
         }
     }
 }

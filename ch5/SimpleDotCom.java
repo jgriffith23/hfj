@@ -1,8 +1,10 @@
+import java.util.ArrayList;
+
 public class SimpleDotCom {
-    private int[] locationCells;
+    private ArrayList<Integer> locationCells = new ArrayList<Integer>();
     int numHits = 0;
 
-    public void setLocationCells(int[] cells) {
+    public void setLocationCells(ArrayList<Integer> cells) {
         locationCells = cells;
     }
 
@@ -19,11 +21,10 @@ public class SimpleDotCom {
 
         for (int cell : locationCells) {
 
-            // Handle a hit. Should we be using a private setter or
-            // other private method for accessing numHits?
-
+            // Handle a hit. 
             if (guess == cell) {
                 result = "hit";
+                locationCells.remove(locationCells.indexOf(cell));
                 numHits++;
                 break;
             }
@@ -31,7 +32,7 @@ public class SimpleDotCom {
 
         // Check for a kill.
 
-        if (numHits == locationCells.length) {
+        if (locationCells.size() == 0) {
             result = "kill";
         }
 
