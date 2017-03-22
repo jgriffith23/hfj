@@ -13,10 +13,10 @@ public class SimpleDotComGame {
         // dot com's location cells.
 
         int start = (int) (Math.random() * 5);
-        ArrayList<Integer> cells = new ArrayList<Integer>();
-        cells.add(start);
-        cells.add(start + 1);
-        cells.add(start + 2);
+        ArrayList<String> cells = new ArrayList<String>();
+        cells.add(Integer.toString(start));
+        cells.add(Integer.toString(start + 1));
+        cells.add(Integer.toString(start + 2));
         ubermelon.setLocationCells(cells);
 
         // State variable; when this is false, the dot com is dead, Jim.

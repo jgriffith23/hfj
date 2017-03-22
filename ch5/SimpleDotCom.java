@@ -1,39 +1,30 @@
 import java.util.ArrayList;
 
 public class SimpleDotCom {
-    private ArrayList<Integer> locationCells = new ArrayList<Integer>();
+    private ArrayList<String> locationCells = new ArrayList<String>();
     int numHits = 0;
 
-    public void setLocationCells(ArrayList<Integer> cells) {
+    public void setLocationCells(ArrayList<String> cells) {
         locationCells = cells;
     }
 
     public String checkYoSelf(String userGuess) {
 
-        // Convert the String guess into an int
-        int guess = Integer.parseInt(userGuess);
-
         // Make a var to hold the result to return. Assume the user's
         // aim is lousy.
         String result = "miss";
 
-        // Check each cell against the user's guess.
+        int index = locationCells.indexOf(userGuess);
 
-        for (int cell : locationCells) {
-
-            // Handle a hit. 
-            if (guess == cell) {
-                result = "hit";
-                locationCells.remove(locationCells.indexOf(cell));
-                numHits++;
-                break;
+        if (index >= 0) {
+            locationCells.remove(index);
+            if (locationCells.isEmpty()) {
+                result = "kill";
             }
-        }
 
-        // Check for a kill.
-
-        if (locationCells.size() == 0) {
-            result = "kill";
+            else {
+                result = "hit";
+            }
         }
 
         System.out.println(result);
