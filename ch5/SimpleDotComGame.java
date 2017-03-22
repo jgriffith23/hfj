@@ -4,10 +4,13 @@ public class SimpleDotComGame {
         int numGuesses = 0;
         SimpleDotCom ubermelon = new SimpleDotCom();
 
+        // Apparently this is a helper class we'll write...
+        GameHelper helper = new GameHelper();
+
         // Pick random starting location and assign the
         // dot com's location cells. Hard coded for now.
 
-        int start = 2;
+        int start = (int) (Math.random() * 5);
         int [] cells = {start, start + 1, start + 2};
         ubermelon.setLocationCells(cells);
 
@@ -15,20 +18,17 @@ public class SimpleDotComGame {
         boolean isAlive = true;
 
         // As long as the dot com isn't dead, keep getting and checking
-        // the user's guesses. For now, I'm hard coding; need to get
-        // from cmd line.
+        // the user's guesses. Theoretically, GameHelper will assist.
 
-        String userGuess;
-        String result;
         while (isAlive == true) {
-            userGuess = "2";
-            numGuesses++;
+            String userGuess = helper.getUserInput("Enter a number: ");
+            String result = ubermelon.checkYoSelf(userGuess);
 
-            result = ubermelon.checkYoSelf(userGuess);
+            numGuesses++;
 
             if (result == "kill") {
                 isAlive = false;
-                System.out.println(numGuesses);
+                System.out.println("You took " + numGuesses + "guesses");
             }
         }
     }
