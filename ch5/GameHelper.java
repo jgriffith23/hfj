@@ -1,7 +1,8 @@
-mport java.io.*;
+import java.io.*;
 
 public class GameHelper {
     public String getUserInput(String prompt) {
+        String inputLine = null;
         System.out.print(prompt + " ");
 
         // Ooh, they're giving us a try/catch. But not explaining yet. :(
@@ -19,6 +20,6 @@ public class GameHelper {
             System.out.println("IOException: " + e);
         }
 
-        retun inputLine;
+        return inputLine;
     }
 }
