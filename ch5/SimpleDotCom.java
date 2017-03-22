@@ -1,35 +1,42 @@
- public class SimpleDotComTestDrive {
+public class SimpleDotCom {
+    int[] locationCells;
+    int numHits = 0;
 
-     // Following along, but at this point, the example code does not
-     // test for misses or kills. We should test for those, too.
+    public void setLocationCells(int[] cells) {
+        locationCells = cells;
+    }
 
-     public static void main (String[] args) {
+    public String checkYoSelf(String userGuess) {
 
-         // Instantiate a SimpleDotCom object
-         SimpleDotCom tweeter = new SimpleDotCom();
-         
-         // Make int Array to contain the dotcom
-         int [] cells = {2, 3, 4};
+        // Convert the String guess into an int
+        int guess = Integer.parseInt(userGuess);
 
-         // Invoke setter method to set location cells
-         tweeter.setLocationCells(cells);
+        // Make a var to hold the result to return. Assume the user's
+        // aim is lousy.
+        String result = "miss";
 
-         // Make a fake guess
-         String userGuess = "2";
+        // Check each cell against the user's guess.
 
-         // Invoke checkYoSelf() on the object and pass it the fake guess
-         String result = dot.checkYoSelf(userGuess);
+        for (int cell : locationCells) {
 
-         // Assume failure
-         String testResult = "failed";
+            // Handle a hit. Should we be using a private setter or
+            // other private method for accessing numHits?
 
-         // 2 is one of the cells, so the string "hit" should be bound to
-         // result. If it is, we have passed.
+            if (guess == cell) {
+                result = "hit";
+                numHits++;
+                break;
+            }
+        }
 
-         if result.equals("hit") {
-                 testResult = "passed";
-         }
+        // Check for a kill.
 
-         System.out.println(testResult);
-     }
- }
+        if (numHits == locationCells.length) {
+            result = "kill";
+        }
+
+        System.out.println(result);
+
+        return result;
+    }
+}
