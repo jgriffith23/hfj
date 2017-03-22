@@ -1,8 +1,12 @@
+import java.util.ArrayList;
+
 public class SimpleDotComGame {
 
     public static void main (String[] args) {
         int numGuesses = 0;
         SimpleDotCom ubermelon = new SimpleDotCom();
+
+        ArrayList<String> hitsMade = new ArrayList<String>();
 
         // Apparently this is a helper class we'll write...
         GameHelper helper = new GameHelper();
@@ -22,13 +26,30 @@ public class SimpleDotComGame {
 
         while (isAlive == true) {
             String userGuess = helper.getUserInput("Enter a number: ");
-            String result = ubermelon.checkYoSelf(userGuess);
+            boolean alreadyHit = false;
 
-            numGuesses++;
+            for (String hit : hitsMade) {
+                if (userGuess.equals(hit)) {
+                    alreadyHit = true;
+                    break;
+                }
+            }
 
-            if (result == "kill") {
-                isAlive = false;
-                System.out.println("You took " + numGuesses + "guesses");
+            if (alreadyHit == false) {
+
+                String result = ubermelon.checkYoSelf(userGuess);
+
+                numGuesses++;
+                hitsMade.add(userGuess);
+
+                if (result == "kill") {
+                    isAlive = false;
+                    System.out.println("You took " + numGuesses + " guesses");
+                }
+            }
+
+            else {
+                System.out.println("Hey, you blew that up already!");
             }
         }
     }

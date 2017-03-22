@@ -1,5 +1,5 @@
 public class SimpleDotCom {
-    int[] locationCells;
+    private int[] locationCells;
     int numHits = 0;
 
     public void setLocationCells(int[] cells) {
