@@ -8,7 +8,7 @@ public class SimpleDotComGame {
         GameHelper helper = new GameHelper();
 
         // Pick random starting location and assign the
-        // dot com's location cells. Hard coded for now.
+        // dot com's location cells.
 
         int start = (int) (Math.random() * 5);
         int [] cells = {start, start + 1, start + 2};
@@ -18,7 +18,7 @@ public class SimpleDotComGame {
         boolean isAlive = true;
 
         // As long as the dot com isn't dead, keep getting and checking
-        // the user's guesses. Theoretically, GameHelper will assist.
+        // the user's guesses.
 
         while (isAlive == true) {
             String userGuess = helper.getUserInput("Enter a number: ");
