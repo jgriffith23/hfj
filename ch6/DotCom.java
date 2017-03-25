@@ -42,3 +42,5 @@ public class DotCom {
         }
 
         return result;
+    }
+}

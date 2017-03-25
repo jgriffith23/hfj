@@ -46,7 +46,7 @@ public class DotComBust {
 
             if (result.equals("kill")) {
                 dotComs.remove(hiddenDotCom);
-                break
+                break;
             }
         }
 

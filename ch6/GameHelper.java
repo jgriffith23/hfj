@@ -22,13 +22,14 @@ public class GameHelper {
             if (inputLine.length() == 0) {
                 return null;
             }
-
-            catch (IOException e) {
-                System.out.println("IOException: " + e);
-            }
-
-            return inputLine.toLowerCase();
         }
+
+        catch (IOException e) {
+            System.out.println("IOException: " + e);
+        }
+
+        return inputLine.toLowerCase();
+        
     }
 
     public ArrayList<String> placeDotCom(int dotComSize) {
@@ -37,7 +38,7 @@ public class GameHelper {
         String temp = null;
         int [] coords = new int[dotComSize];
         int attempts = 0;
-        boolean sucess = false;
+        boolean success = false;
         int location = 0;
 
         dotComCount++;
@@ -52,13 +53,13 @@ public class GameHelper {
             location = (int) (Math.random() * gridSize);
             int x = 0;
             success = true;
-            while (success && x < comSize) {
+            while (success && x < dotComSize) {
                 if (grid[location] == 0) {
                     coords[x++] = location;
                     location += incr;
 
                     if (location >= gridSize) {
-                        sucess = false;
+                        success = false;
                     }
 
                     if (x > 0 && (location % gridLength == 0)) {
