@@ -6,13 +6,13 @@ public class AbstractAnimal {
     private String preferredFood;
     private int hunger = 0;
 
-    // public AbstractAnimal(String passedNativeHabitat,
-    //                       String passedSpecies,
-    //                       String passedNoiseItMakes) {
-    //     nativeHabitat = passedNativeHabitat;
-    //     species = passedSpecies;
-    //     noiseItMakes = passedNoiseItMakes;
-    // }
+    public AbstractAnimal(String passedNativeHabitat,
+                          String passedSpecies,
+                          String passedNoiseItMakes) {
+        nativeHabitat = passedNativeHabitat;
+        species = passedSpecies;
+        noiseItMakes = passedNoiseItMakes;
+    }
 
     public String getNativeHabitat() {
         return nativeHabitat;
@@ -42,12 +42,20 @@ public class AbstractAnimal {
         preferredFood = newFood;
     }
 
+    public void setHunger(int newHunger) {
+        hunger = newHunger;
+    }
+
     public void greet() {
+        String greeting = "Hi, I'm " + name + " the " + species + "!";
+        System.out.println(greeting);
         System.out.println(noiseItMakes);
     }
 
     public void eat(int calories) {
-        hunger = hunger - calories;
+        int newHunger = getHunger() - calories;
+
+        setHunger(newHunger);
     }
 
     public void sleep() {
@@ -58,7 +66,9 @@ public class AbstractAnimal {
 
         // Let's say an animal craves 50 more calories
         // per minute it roams...
-        hunger = hunger + 50 * minutes;
+        int newHunger = getHunger() + 50 * minutes;
+
+        setHunger(newHunger);
 
         System.out.println("*frolic frolic woot!*");
     }
